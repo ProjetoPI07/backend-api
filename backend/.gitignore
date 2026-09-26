@@ -1,6 +1,6 @@
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -14,10 +14,11 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +32,21 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secrets & Environment ###
+.env
+.env.*
+*.env
+application-local.properties
+application-local.yml
+application-local.yaml
+
+### Logs & JVM ###
+*.log
+logs/
+hs_err_pid*
+replay_pid*
+
+### OS generated ###
+.DS_Store
+Thumbs.db
