@@ -33,17 +33,13 @@ public class PecaController {
         return ResponseEntity.ok(PecaMapper.toResponseDto(pecas));
     }
 
-    @PostMapping
+
     public ResponseEntity<PecaResponseDTO> cadastrar(
-            @Valid  @RequestBody PecaRequestDTO pecaRequest
-    ) {
-
-        Peca peca = PecaMapper.toEntity(pecaRequest);
-        Peca pecaSalva = pecaRepository.save(peca);
-
-        PecaResponseDTO resposta = PecaMapper.toResponse(pecaSalva);
-
-        return ResponseEntity.status(201).body(resposta);
+            @Valid @RequestBody PecaRequestDTO dto
+    ){
+        Peca peca = PecaMapper.toEntity(dto);
+        Peca pecaSalva = pecaService.cadastrarPeca(peca);
+        return ResponseEntity.status(201).body(PecaMapper.toResponse(pecaSalva));
     }
 
 }
