@@ -5,6 +5,7 @@ import com.construmoveis.backend.dto.PecaResponseDTO;
 import com.construmoveis.backend.entity.Peca;
 import com.construmoveis.backend.mapper.PecaMapper;
 import com.construmoveis.backend.repository.PecaRepository;
+import com.construmoveis.backend.service.PecaService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +16,21 @@ import java.util.List;
 @RequestMapping("/pecas")
 public class PecaController {
 
+
+    private final PecaService pecaService;
+
     private final PecaRepository pecaRepository;
 
-    public PecaController(PecaRepository pecaRepository) {
+    public PecaController(PecaService pecaService, PecaRepository pecaRepository) {
+        this.pecaService = pecaService;
 
         this.pecaRepository = pecaRepository;
     }
 
     @GetMapping
     ResponseEntity<List<PecaResponseDTO>> listar(){
-
-        List<Peca> pecas = pecaRepository.findAll();
-
-        List<PecaResponseDTO> pecasMapeadas = PecaMapper.toResponseDto(pecas);
-        return ResponseEntity.ok(pecasMapeadas);
+        List<Peca> pecas = pecaService.buscar();
+        return ResponseEntity.ok(PecaMapper.toResponseDto(pecas));
     }
 
     @PostMapping
