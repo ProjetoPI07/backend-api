@@ -16,4 +16,8 @@ public class PecaService {
     public List<Peca> buscar(){
         return pecaRepository.findAll();
     }
+
+    public Peca cadastrarPeca(Peca pecaCadastrada){
+        return pecaRepository.save(pecaCadastrada);
+    }
 }
